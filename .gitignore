@@ -10,3 +10,5 @@ War.gpr
 War.rep
 War.rep/
 super_anti_virus
+test/obj
+test/super_anti_virus
