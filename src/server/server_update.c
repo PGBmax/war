@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:24:03 by mbatty            #+#    #+#             */
-/*   Updated: 2025/12/07 14:11:03 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/06/20 11:09:15 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,14 @@ static int	server_read_client_raw(t_server *server, t_client *client)
 			if (server->disconnect_hook)
 				server->disconnect_hook(client, server->disconnect_hook_arg);
 			server_remove_client(server, client->fd);
-			printf(TEXT_RED "\nFailed to fully receive raw data\n" TEXT_RESET);
 			return (-1);
 		}
 		write(fd, buffer, size);
 		client->total_size += size;
 		server->total_bytes_received += size;
-		printf("\rReceived %ld/%ld bytes", client->total_size, client->file_size);
 		fflush(stdout);
 		if (client->total_size >= client->file_size)
-		{
-			printf(TEXT_GREEN "\nFinished receiving file\n" TEXT_RESET);
 			break ;
-		}
 	}
 	close(fd);
 	return (1);
@@ -93,7 +88,6 @@ static int	server_treat_client_input(t_server *server, t_client *client)
 	{
 		if (client->receiving_file)
 		{
-			printf("Total size %ld\n", client->total_size);
 			client->receiving_file = false;
 			free(client->buffer);	
 			client->buffer = NULL;
@@ -108,7 +102,6 @@ static int	server_treat_client_input(t_server *server, t_client *client)
 			client->receiving_file = true;
 			client->file_size = atoll(msg + 9);
 			client->total_size = 0;
-			printf("Received file transfer size %ld\n", client->file_size);
 			free(msg);
 			break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 09:37:04 by mbatty            #+#    #+#             */
-/*   Updated: 2026/06/20 09:37:24 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/06/20 11:08:45 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ int	get_fingerprint(char *buf)
 	memset(buf1, 0, sizeof(buf1));
 	ft_itoa_hex(buf1, ts.tv_nsec);
 	memcpy(nsec + (16 - strlen(buf1)), buf1, strlen(buf1));
-
-	printf("%s\n", buf);
 	return (0);
 }
