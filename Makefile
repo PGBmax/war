@@ -6,26 +6,27 @@ LFLAGS :=
 
 ###
 
-INCLUDE_DIRS :=	inc/		\
-				inc/server/	\
-				inc/list/	\
+INCLUDE_DIRS :=	inc/				\
+				inc/server/			\
+				inc/list/			\
 
-C_SRCS :=	src/main.c\
-		src/infect.c\
-		src/check.c\
-		src/crawl.c\
-		src/payload.c\
-		src/utils.c\
-		src/daemon.c\
-		src/service.c\
-		src/sha256.c\
-		src/server/server.c\
-		src/server/server_clients.c\
-		src/server/server_update.c\
-		src/server/server_utils.c\
-		src/list/list_node.c\
-		src/list/list.c\
-		src/run_check.c\
+C_SRCS :=	src/main.c				\
+		src/infect.c				\
+		src/check.c					\
+		src/crawl.c					\
+		src/payload.c				\
+		src/utils.c					\
+		src/daemon.c				\
+		src/service.c				\
+		src/sha256.c				\
+		src/server/server.c			\
+		src/server/server_clients.c	\
+		src/server/server_update.c	\
+		src/server/server_utils.c	\
+		src/list/list_node.c		\
+		src/list/list.c				\
+		src/run_check.c				\
+		src/fingerprint.c			\
 
 ASM_SRCS :=
 
