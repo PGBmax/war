@@ -1,7 +1,7 @@
 NAME :=	War
 
 CC :=	cc
-CFLAGS := -g3 -MP -MMD -Wall -Wextra -Werror # -fsanitize=address -fno-omit-frame-pointer
+CFLAGS := -MP -MMD -Wall -Wextra -Werror # -fsanitize=address -fno-omit-frame-pointer
 LFLAGS :=
 
 ###
