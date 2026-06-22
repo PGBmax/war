@@ -3,6 +3,10 @@
   <p><em>An ELF virus written in C — 42 Post-CC cybersecurity project</em></p>
 </div>
 
+<div align="center">
+  <img width="320" alt="Famine project score" src="https://github.com/user-attachments/assets/cb338c1d-c9f2-48b7-9a58-51001d1f1ad0" />
+</div>
+
 <br/>
 
 <div align="center">
